@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply focus-visible:outline-slate-400 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:focus:outline-1 dark:focus-visible:outline-tgreen;
+}
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[type="submit"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  @apply border-transparent outline-0 ring-2 ring-slate-500 dark:ring-tgreen;
+}
+
