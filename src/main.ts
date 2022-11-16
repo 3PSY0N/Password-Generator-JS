@@ -10,10 +10,15 @@ const includeCharsSymbols   = document.querySelector<HTMLInputElement>('#include
 const generateButton        = document.querySelector<HTMLButtonElement>('#generateButton')!;
 const copyButton            = document.querySelector<SVGElement>('#copyButton')!;
 const copiedSuccess         = document.querySelector<HTMLParagraphElement>('#copiedSuccess')!;
+const passwordStrength      = document.querySelector<HTMLParagraphElement>('#passwordStrength')!;
+
+let charLengthValue: number
+let possibleChar: number
 
 /* Generate password when range slider is moved */
 charLengthRange.addEventListener('input', (event: Event) => {
     charLength.innerText = (event.target as HTMLInputElement).value
+    charLengthValue = parseInt((event.target as HTMLInputElement).value)
     generatePassword(Number.parseInt(charLengthRange.value))
 })
 
@@ -47,6 +52,7 @@ generatePassword(Number.parseInt(charLengthRange.value))
  * Generate password according to the number of characters indicated by the cursor
  * and according to the checked boxes
  */
+
 function generatePassword(length: number)
 {
     let possibleCharacters: Array<string | any> = []
@@ -73,7 +79,7 @@ function generatePassword(length: number)
         possibleCharacters.push(...generateCharacterFromAsciiRange(91, 96))
         possibleCharacters.push(...generateCharacterFromAsciiRange(123, 126))
     }
-
+    possibleChar = possibleCharacters.length;
     /** Shuffle array for more randomness */
     possibleCharacters = shuffleArray(possibleCharacters)
 
@@ -84,6 +90,7 @@ function generatePassword(length: number)
     })
 
     generatedPassword.innerText = randomPassword
+    updatePasswordStrength()
 }
 
 /**
@@ -120,3 +127,39 @@ function shuffleArray(array: Array<string>): Array<string> {
 function generateRandomIntegerInRange(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+
+/**
+ * Compute the strength of the password
+ */
+//nombreDeChar*log(nombreDeCharPossible)/log(2)
+function computePasswordStrength(): number {
+    const equivalentSizeKey: number = charLengthValue*Math.log(possibleChar)/Math.log(2);
+    if(equivalentSizeKey > 100)
+        return 4;
+    if(equivalentSizeKey > 80)
+        return 3;
+    if(equivalentSizeKey > 64)
+        return 2;
+    return 1;
+
+}
+
+/**
+ * Change Span color based on password strength
+ */
+
+function updatePasswordStrength(): void {
+    const passwordStrengthValue: number = computePasswordStrength();
+    for(let i = 0; i<4; i++)
+    {
+        passwordStrength.children[i].classList.remove('bg-tgreen')
+    }
+    for(let i = 0; i<passwordStrengthValue; i++)
+    {
+        passwordStrength.children[i].classList.add('bg-tgreen')
+    }
+
+
+}
+
