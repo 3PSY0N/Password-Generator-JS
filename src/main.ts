@@ -151,13 +151,14 @@ function computePasswordStrength(): number {
 
 function updatePasswordStrength(): void {
     const passwordStrengthValue: number = computePasswordStrength();
+    const color: string[] = ['bg-red-500', 'bg-orange-500', 'bg-amber-300', 'bg-green-300']
     for(let i = 0; i<4; i++)
     {
-        passwordStrength.children[i].classList.remove('bg-tgreen')
+        passwordStrength.children[i].className = 'border px-1';
     }
     for(let i = 0; i<passwordStrengthValue; i++)
     {
-        passwordStrength.children[i].classList.add('bg-tgreen')
+        passwordStrength.children[i].classList.add(color[passwordStrengthValue-1]);
     }
 
 
