@@ -1,8 +1,9 @@
 # Password Generator in Javascript and Tailwind CSS
 This project is a simple exercise for learning purposes
 
-<p align="center">
-  <img width="600" src="https://user-images.githubusercontent.com/78256817/202302654-a9c77e63-24a6-4d9a-a52e-683eff4d0a26.png">
+<p align="center" style="display: flex;">
+  <img width="600" src="https://github.com/3PSY0N/TP-Password-Generator-JS/assets/78256817/5a50bf67-c4f7-42be-a114-47265be50292">
+  <img width="600" src="https://github.com/3PSY0N/TP-Password-Generator-JS/assets/78256817/2b6901b3-7a8f-4919-aa45-7752a4caaf5b">
 </p>
 
 Install and start project
