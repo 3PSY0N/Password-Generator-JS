@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: pwdgenerator
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pwdgenerator:latest
+    ports:
+      - 8887:3000
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
