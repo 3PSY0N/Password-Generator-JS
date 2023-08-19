@@ -98,7 +98,7 @@ function generatePassword(length: number)
     updatePasswordStrength()
 
     if (includePassphrase.checked) {
-        generateAndDisplayPassphrase(length);
+        generateAndDisplayPassphrase(length).then(r => r);
     }
 
     /* hide or show Stengh bar depending Passphrase checkbox state */
@@ -110,8 +110,7 @@ function generatePassword(length: number)
 }
 
 async function generateAndDisplayPassphrase(length: number) {
-    const randomPassphrase = await generateRandomPassphrase(length);
-    generatedPassword.innerText = randomPassphrase;
+    generatedPassword.innerText = await generateRandomPassphrase(length);
     updatePasswordStrength();
 }
 
@@ -182,7 +181,7 @@ async function generateRandomPassphrase(length: number): Promise<string> {
                 const randomWord = words[randomIndex].trim();
                 randomPassphrase += randomWord + ' ';
             }
-            return randomPassphrase.trim();
+            return randomPassphrase.trim().toUpperCase();
         });
 }
 
