@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Password Generator</title>
+  <script type="module" crossorigin src="/assets/index.bcd270db.js"></script>
+  <link rel="stylesheet" href="/assets/index.79ba8cf7.css">
+</head>
+<body class="bg-tdark-300">
+
+<main class="flex h-screen flex-col font-mono lg:mt-16">
+    <div class="mx-auto w-full max-w-[500px]">
+        <div class="my-8 text-center text-xl font-bold text-gray-400">Password Generator</div>
+
+        <div class="flex flex-col gap-4">
+
+            <div class="flex flex-col gap-4 rounded-xl p-4 text-gray-100 transition-all duration-1000 bg-tdark-100">
+                <div class="flex justify-between">
+                    <p class="self-center">Character Length</p>
+                    <span class="text-xl text-tgreen" id="charLength">0</span>
+                </div>
+
+                <input class="accent-tgreen" type="range" id="charLengthRange" value="0" min="8" max="50">
+
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="includeCharsLowercase"
+                               class="border-gray-300 bg-transparent shadow-sm text-tgreen/50 focus:border-tgreen focus:ring-tgreen focus:ring-0 focus:ring-opacity-50 focus:ring-offset-0" checked>
+                        <p class="pl-4">Include Lowercase Letters</p>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="includeCharsUppercase"
+                               class="border-gray-300 bg-transparent shadow-sm text-tgreen/50 focus:border-tgreen focus:ring-tgreen focus:ring-0 focus:ring-opacity-50 focus:ring-offset-0">
+                        <p class="pl-4">Include Uppercase Letters</p>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="includeCharsNumbers"
+                               class="border-gray-300 bg-transparent shadow-sm text-tgreen/50 focus:border-tgreen focus:ring-tgreen focus:ring-0 focus:ring-opacity-50 focus:ring-offset-0">
+                        <p class="pl-4">Include Numbers</p>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="includeCharsSymbols"
+                               class="border-gray-300 bg-transparent shadow-sm text-tgreen/50 focus:border-tgreen focus:ring-tgreen focus:ring-0 focus:ring-opacity-50 focus:ring-offset-0">
+                        <p class="pl-4">Include Symbols</p>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="includePassphrase"
+                               class="border-gray-300 bg-transparent shadow-sm text-tgreen/50 focus:border-tgreen focus:ring-tgreen focus:ring-0 focus:ring-opacity-50 focus:ring-offset-0">
+                        <p class="pl-4">Passphrase</p>
+                    </div>
+                </div>
+
+                <div id="passwordStrengthContainer" class="flex justify-between rounded-md p-4 bg-tdark-200">
+                    <span>Strength</span>
+                    <div id="passwordStrength" class="flex items-center gap-1">
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                        <span class="h-4 w-4 rounded-full border border-gray-700 px-1"></span>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button id="generateButton" class="flex w-full justify-center rounded-xl border px-4 py-4 text-sm uppercase transition border-tgreen group hover:bg-tgreen hover:text-tdark-300">
+                        <span class="mr-2 self-center">Generate</span>
+                        <svg class="h-5 w-5 fill-slate-100 transition group-hover:fill-slate-900" viewBox="0 0 15 15"><path d="m14.5 3.5l.354.354a.5.5 0 0 0 0-.708L14.5 3.5Zm-14 8l-.354-.354a.5.5 0 0 0 0 .708L.5 11.5ZM11.146.854l3 3l.708-.708l-3-3l-.708.708Zm3 2.292l-3 3l.708.708l3-3l-.708-.708Zm-10.292 11l-3-3l-.708.708l3 3l.708-.708Zm-3-2.292l3-3l-.708-.708l-3 3l.708.708ZM.5 12h11v-1H.5v1ZM15 8.5V7h-1v1.5h1ZM11.5 12A3.5 3.5 0 0 0 15 8.5h-1a2.5 2.5 0 0 1-2.5 2.5v1Zm3-9h-11v1h11V3ZM0 6.5V8h1V6.5H0ZM3.5 3A3.5 3.5 0 0 0 0 6.5h1A2.5 2.5 0 0 1 3.5 4V3Z"/></svg>
+                    </button>
+                    <button id="copyButton" class="flex w-full justify-center rounded-xl border px-4 py-4 text-sm uppercase transition border-tgreen group hover:text-tdark-300 hover:bg-tgreen" title="Copy">
+                        <span class="mr-2 self-center">Copy</span>
+                        <svg class="h-5 w-5 stroke-slate-100 transition group-hover:stroke-slate-900" fill="none" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.7 3.9a2.3 2.3 0 0 0-2.2-1.6h-3c-1 0-1.9.6-2.2 1.6m7.4 0v.6a.8.8 0 0 1-.7.8H9a.8.8 0 0 1-.8-.8v0l.1-.6m7.4 0 1.9.2c1 .1 1.9 1 1.9 2.2v13.2a2.3 2.3 0 0 1-2.3 2.3H6.8a2.3 2.3 0 0 1-2.3-2.3V6.3c0-1.2.8-2.1 2-2.2a48.2 48.2 0 0 1 1.8-.2"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col rounded-xl p-4 transition-all bg-tdark-100">
+                <div class="flex flex-col">
+                    <p id="generatedPassword" class="w-full break-words text-2xl text-gray-100 transition bg-tdark-100 min-h-[70px]"></p>
+                </div>
+                <p id="copiedSuccess" class="text-center opacity-0 transition-all text-tgreen">Copied!</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>
